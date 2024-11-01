@@ -5,7 +5,7 @@
 Below is the default HPL.dat file provided on first build.
 This default file is not optimized for anything.
 
-```json
+```
 HPLinpack benchmark input file
 Innovative Computing Laboratory, University of Tennessee
 HPL.out      output file name (if any)
@@ -68,9 +68,26 @@ HPL.out      output file name (if any)
 > 29 30 34 35  Ns
 >```
 
+* This example shows 4 problems of sizes 29, 30, 34, 35
 * Sizes of the different problems
 * The recommended problem sizes should fall between 70%-90% memory
-* Calculate the memory with <a href="psize">this tool</a>
+* Calculate the memory with [this tool](#psize)
+* Will run sequentially
+
+>```r
+> 4            # of NBs
+>```
+
+* Number of block sizes (<=20)
+* If you have specified more than one, they will run sequentially
+
+>```r
+> 1 2 3 4      NBs
+>```
+
+* Block sizes to be run
+* Block sizes should be a multiple of the # of cores used
+* Should not be too big nor too small and usually <384 or <512
 * Will run sequentially
 
 >```r
@@ -89,16 +106,16 @@ HPL.out      output file name (if any)
 * P x Q = total processors (2D processor grid)
 * P = # processors for rows
 * Q = # processors for columns
-* In most cases, P <= Q
-  * number and data volume of communications in cols > rows
+* In most cases, you want P <= Q
+  * Aim for "square" or "slightly flat" grids
+  * Stay away from 1xQ or Px1 grids unless very small
+  * Number and data volume of communications in cols > rows
 * Recommended to set the value of P to an exponential power of 2
-  * binary exchange for horizontal communication = FLOPS optimal when P = 2^n
+  * Binary exchange for horizontal communication = FLOPS optimal when P = 2^n
 
 ## Resources
 
-<a name="psize"></a>
-
-**[HPL Problem Size Calculator](https://www.desmos.com/calculator/siyjzpkxmv)**
+<a name="psize"></a>**[HPL Problem Size Calculator](https://www.desmos.com/calculator/y1d9nhb54c)**
 
 The HPL Problem Size Calculator is based on the HPL FAQs found on [Netlib](https://netlib.org/benchmark/hpl/faqs.html) and [UTK's ICL page](https://icl.utk.edu/hpl/faq/index.html#275). Adjust percent memory used as needed.
 
