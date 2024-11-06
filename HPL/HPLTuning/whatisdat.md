@@ -41,7 +41,7 @@ HPL.out      output file name (if any)
 
 ### Breakdown
 
-> ```r
+> ```sh
 > HPL.out      output file name (if any)
 > ```
 
@@ -49,7 +49,7 @@ HPL.out      output file name (if any)
 * If no output file exists under that name, it will make a new one, otherwise it will overwrite the existing file
 * If you stop early, the output is still redirected to the appropriate file up until the point of stopping
 
->```r
+>```sh
 > 6            device out (6=stdout,7=stderr,file)
 >```
 
@@ -57,14 +57,14 @@ HPL.out      output file name (if any)
 * integer other than 6/7 = outputs in output file name above
 * If the integer is 6 or 7, no output file will be made regardless of whether you specified an output file name
 
->```r
+>```sh
 > 4            # of problems sizes (N)
 >```
 
 * How many problems do you want to run?
 * If you have specified more than one, they will run sequentially.
 
->```r
+>```sh
 > 29 30 34 35  Ns
 >```
 
@@ -74,14 +74,14 @@ HPL.out      output file name (if any)
 * Calculate the memory with [this tool](#psize)
 * Will run sequentially
 
->```r
+>```sh
 > 4            # of NBs
 >```
 
 * Number of block sizes (<=20)
 * If you have specified more than one, they will run sequentially
 
->```r
+>```sh
 > 1 2 3 4      NBs
 >```
 
@@ -90,14 +90,14 @@ HPL.out      output file name (if any)
 * Should not be too big nor too small and usually <384 or <512
 * Will run sequentially
 
->```r
+>```sh
 > 3            # of process grids (P x Q)
 >```
 
 * If multiple process grids, will run sequentially
 * \>1 process grids is also for \>1 problems
 
-> ```r
+> ```sh
 > 2 1 4        Ps
 > 2 4 1        Qs
 >```
@@ -112,6 +112,44 @@ HPL.out      output file name (if any)
   * Number and data volume of communications in cols > rows
 * Recommended to set the value of P to an exponential power of 2
   * Binary exchange for horizontal communication = FLOPS optimal when P = 2^n
+
+```sh
+2            SWAP (0=bin-exch,1=long,2=mix)
+```
+
+* Applies to part of algorithm: updating trailing submatrix
+
+* Choose ONE swapping algorithm for ALL tests
+* 0 = Binary exchange
+  1 = Spread-roll (long)
+  2 = Use both (mix)
+  * RECOMMENDED FOR LARGE PROBLEM SIZES
+  * First, binary exchange for a number of cols in row panel < threshold value
+  * Then, spread-roll algorithm
+* 2 is usually best
+
+```sh
+64           swapping threshold
+```
+
+* Applies to part of algorithm: updating trailing submatrix
+
+* Only used when SWAP = 2
+* How to select:
+  * Try to find threshold of the order of NB selected (multiples of NB / NB exactly)
+  * Find middle ground
+    * Large threshold = will usually use binary exchange
+    * Small threshold = threshold < NB = will always use spread-roll (long)
+* EXAMPLE: IF SWAP = 2, then when running tests, once >64 columns in row panel, SWAP to spread-roll algorithm
+
+```sh
+8            memory alignment in double (> 0)
+```
+
+* Recommmend using 4 or 8 (8 to be safe)
+* Find cache line size: `getconf LEVEL1_DCACHE_LINESIZE`
+* Cache line size and/or bus width should be a mulitple of this number
+
 
 ## Resources
 
