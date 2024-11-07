@@ -136,7 +136,7 @@ HPL.out      output file name (if any)
 
 * Only used when SWAP = 2
 * How to select:
-  * Try to find threshold of the order of NB selected (multiples of NB / NB exactly)
+  * Try to find threshold of the order of NB selected (multiples of NB? / NB exactly)
   * Find middle ground
     * Large threshold = will usually use binary exchange
     * Small threshold = threshold < NB = will always use spread-roll (long)
@@ -147,8 +147,11 @@ HPL.out      output file name (if any)
 ```
 
 * Recommmend using 4 or 8 (8 to be safe)
+* Memory alignment: arranging data at specific boundaries (4, 8, etc bytes) that match system architecture
+  * HPL solves in double precision (64-bit) arithmetic / uses double precision floating-point to represent data
+  * 8-byte alignment for double is probably best for Jetstream 2
 * Find cache line size: `getconf LEVEL1_DCACHE_LINESIZE`
-* Cache line size and/or bus width should be a mulitple of this number
+* Guess: cache line size and/or bus width should be a mulitple of this number
 
 
 ## Resources
