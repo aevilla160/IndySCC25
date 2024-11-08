@@ -113,6 +113,11 @@ HPL.out      output file name (if any)
 * Recommended to set the value of P to an exponential power of 2
   * Binary exchange for horizontal communication = FLOPS optimal when P = 2^n
 
+Broadcast
+5 Jetstream
+3 Pinnacles
+
+
 ```sh
 2            SWAP (0=bin-exch,1=long,2=mix)
 ```
@@ -136,7 +141,7 @@ HPL.out      output file name (if any)
 
 * Only used when SWAP = 2
 * How to select:
-  * Try to find threshold of the order of NB selected (multiples of NB? / NB exactly)
+  * Try to select a threshold of the order of NB chosen (multiples of NB? / NB exactly)
   * Find middle ground
     * Large threshold = will usually use binary exchange
     * Small threshold = threshold < NB = will always use spread-roll (long)
@@ -159,6 +164,8 @@ HPL.out      output file name (if any)
 <a name="psize"></a>**[HPL Problem Size Calculator](https://www.desmos.com/calculator/y1d9nhb54c)**
 
 The HPL Problem Size Calculator is based on the HPL FAQs found on [Netlib](https://netlib.org/benchmark/hpl/faqs.html) and [UTK's ICL page](https://icl.utk.edu/hpl/faq/index.html#275). Adjust percent memory used as needed.
+
+For more information on how this number is calculated, visit ["Problem Size" page.](/HPL/HPLTuning/problemsize.md)
 
 **[Open Power HPL Tuning](https://github.com/open-power/op-benchmark-recipes/blob/master/standard-benchmarks/HPL/Linpack_HPL.dat_tuning.md)**
 
