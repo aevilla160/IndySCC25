@@ -6,6 +6,7 @@ sudo dnf install nfs-utils -y
 cd /
 
 sudo mkdir /nfs/general/resources/setup -p
+sudo mkdir /nfs/general/logs/iperf -p
 sudo mkdir /nfs/general/tests
 sudo mkdir /nfs/general/slurm
 sudo mkdir /nfs/general/mpi
