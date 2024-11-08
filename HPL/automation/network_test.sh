@@ -2,7 +2,6 @@
 ## Needs 2 inputs to run ##
 ## iperf documentation https://iperf.fr/iperf-doc.php#3doc ##
 
-
 ## Server node ##
 ssh $1 << EOF
   sudo dnf install iperf3;
