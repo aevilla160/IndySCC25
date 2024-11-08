@@ -41,6 +41,9 @@ HPL.out      output file name (if any)
 
 ### Breakdown
 
+Calculate total tests that will be run:
+\# of problem sizes \* # of NBs \* # of process grids \* # of panel fact \* # of recursive stopping criterium \* # of panels in recursion * # of recursive panel fact. \* # of broadcast \* # of lookahead depth
+
 > ```sh
 > HPL.out      output file name (if any)
 > ```
@@ -72,6 +75,7 @@ HPL.out      output file name (if any)
 * Sizes of the different problems
 * The recommended problem sizes should fall between 70%-90% memory
 * Calculate the memory with [this tool](#psize)
+* Recommended to pick an N size that's a multiple of NB
 * Will run sequentially
 
 >```sh
@@ -86,8 +90,9 @@ HPL.out      output file name (if any)
 >```
 
 * Block sizes to be run
-* Block sizes should be a multiple of the # of cores used
+* Recommend block size to be a multiple of the # of cores used (multiple of P x Q)
 * Should not be too big nor too small and usually <384 or <512
+  * Common sizes are between 100-256
 * Will run sequentially
 
 >```sh
@@ -126,10 +131,10 @@ Broadcast
 
 * Choose ONE swapping algorithm for ALL tests
 * 0 = Binary exchange
-  1 = Spread-roll (long)
-  2 = Use both (mix)
+* 1 = Spread-roll (long)
+* 2 = Use both (mix)
   * RECOMMENDED FOR LARGE PROBLEM SIZES
-  * First, binary exchange for a number of cols in row panel < threshold value
+  * First, binary exchange for a number of columnss in row panel (when upper triangular system contains at most a certain number of columns) < threshold value
   * Then, spread-roll algorithm
 * 2 is usually best
 
@@ -141,6 +146,7 @@ Broadcast
 
 * Only used when SWAP = 2
 * How to select:
+  * If look-ahead on: choose at least block size NB = swapping threshold
   * Try to select a threshold of the order of NB chosen (multiples of NB? / NB exactly)
   * Find middle ground
     * Large threshold = will usually use binary exchange
