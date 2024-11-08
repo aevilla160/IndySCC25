@@ -1,4 +1,6 @@
-#!bin/bash
+#!/usr/bin/env bash
+set -e
+
 ## Needs 2 inputs to run ##
 ## iperf documentation https://iperf.fr/iperf-doc.php#3doc ##
 

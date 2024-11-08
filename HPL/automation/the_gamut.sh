@@ -1,4 +1,7 @@
-#!bin/bash
+#!/usr/bin/env bash
+set -e
+
+# Who needs Ansible when you have CTRL-C and CTRL-V? #
 
 echo "RUNNING THE GAMUT"
 
