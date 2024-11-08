@@ -5,7 +5,8 @@
 ## Server node ##
 ssh $1 << EOF
   sudo dnf install iperf3;
-  iperf3 -s;
+  iperf3 -s -1;
+  exit;
 EOF
 
 ## Server node ##
