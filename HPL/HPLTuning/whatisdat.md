@@ -41,8 +41,24 @@ HPL.out      output file name (if any)
 
 ### Breakdown
 
-Calculate total tests that will be run:
-\# of problem sizes \* # of NBs \* # of process grids \* # of panel fact \* # of recursive stopping criterium \* # of panels in recursion * # of recursive panel fact. \* # of broadcast \* # of lookahead depth
+#### Calculation for Total # of Tests
+
+\# of problem sizes \* # of NBs \* # of process grids \* # of panel fact \* # of recursive stopping criterium \* # of panels in recursion * # of recursive panel fact. \* # of broadcast \* # of lookahead depth = total tests run
+
+#### HPL.out T/V
+
+ex `WR13C4C2`
+
+(uncertain about WR)
+
+> DEPTH #
+> BCAST #
+> RFACT L C R
+> NDIVs #
+> PFACTS L C R
+> NBMINs #
+
+#### Parameters
 
 > ```sh
 > HPL.out      output file name (if any)
@@ -108,9 +124,9 @@ Calculate total tests that will be run:
 >```
 
 * This example shows 3 process grids of sizes 2x2, 1x4, 4x1
-* P x Q = total processors (2D processor grid)
-* P = # processors for rows
-* Q = # processors for columns
+* P x Q = total physical cores
+* P = # processes for rows
+* Q = # processes for columns
 * In most cases, you want P <= Q
   * Aim for "square" or "slightly flat" grids
   * Stay away from 1xQ or Px1 grids unless very small
@@ -133,10 +149,9 @@ Broadcast
 * 0 = Binary exchange
 * 1 = Spread-roll (long)
 * 2 = Use both (mix)
-  * RECOMMENDED FOR LARGE PROBLEM SIZES
-  * First, binary exchange for a number of columnss in row panel (when upper triangular system contains at most a certain number of columns) < threshold value
+  * First, binary exchange for a number of columns in row panel is less than threshold value (when upper triangular system contains at most a certain number of columns)
   * Then, spread-roll algorithm
-* 2 is usually best
+* Long or mix recommended for large problem sizes (?)
 
 ```sh
 64           swapping threshold
@@ -166,6 +181,10 @@ Broadcast
 
 
 ## Resources
+
+**[Netlib HPL Tuning Guide](https://www.netlib.org/benchmark/hpl/tuning.html)**
+
+**[Netlib HPL FAQ](https://www.netlib.org/benchmark/hpl/faqs.html)**
 
 <a name="psize"></a>**[HPL Problem Size Calculator](https://www.desmos.com/calculator/y1d9nhb54c)**
 

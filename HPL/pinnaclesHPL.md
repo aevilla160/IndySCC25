@@ -54,8 +54,9 @@ We will be using:
    `:q!`
 
 4. `./configure`
-5. make arch=Linux_Intel64
+5. `make arch=Linux_Intel64`
 6. `cd testing/`
 7. Your HPL.dat file will be in either `pmatgen` or `ptest` in the `testing` folder.
     While in the testing folder, move it out:
     `mv ptest/HPL.dat .` OR `mv pmatgen/HPL.dat .`
+    
