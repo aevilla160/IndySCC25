@@ -1,12 +1,13 @@
-#!bin/bash
+#!/usr/bin/env bash
+set -e
 
 sudo dnf update -y
 sudo dnf install nfs-utils -y
 
 cd /
 
-sudo mkdir -p /nfs/general
-sudo mkdir -p /nfs/home
+# sudo mkdir -p /nfs/general
+# sudo mkdir -p /nfs/home
 
 sudo mount $@:/nfs/general /nfs/general
 sudo mount $@:/home /nfs/home
