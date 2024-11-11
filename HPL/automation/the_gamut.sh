@@ -8,6 +8,7 @@ echo "RUNNING THE GAMUT"
 sudo chmod +x *.sh
 
 ## Login Node setup ##
+./get_ips.sh >> ips.txt
 ./login_nfs_setup.sh
 ./aocc_setup.sh
 ./spack_setup.sh
@@ -20,6 +21,7 @@ ssh scc135-cpu0 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -28,6 +30,7 @@ ssh scc135-cpu1 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -36,6 +39,7 @@ ssh scc135-cpu2 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -44,6 +48,7 @@ ssh scc135-cpu3 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -52,6 +57,7 @@ ssh scc135-cpu4 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -60,6 +66,7 @@ ssh scc135-cpu5 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -68,6 +75,7 @@ ssh scc135-cpu6 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -76,6 +84,7 @@ ssh scc135-cpu7 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -84,6 +93,7 @@ ssh scc135-cpu8 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -92,6 +102,7 @@ ssh scc135-cpu9 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -100,6 +111,7 @@ ssh scc135-cpu10 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -108,6 +120,7 @@ ssh scc135-cpu11 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -116,6 +129,7 @@ ssh scc135-cpu12 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -124,6 +138,7 @@ ssh scc135-cpu13 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -132,6 +147,7 @@ ssh scc135-cpu14 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -140,6 +156,7 @@ ssh scc135-cpu15 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -148,6 +165,7 @@ ssh scc135-cpu16 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -156,6 +174,7 @@ ssh scc135-cpu17 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -164,6 +183,7 @@ ssh scc135-cpu18 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -172,6 +192,7 @@ ssh scc135-cpu19 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -180,6 +201,7 @@ ssh scc135-cpu20 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -188,6 +210,7 @@ ssh scc135-cpu21 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -196,6 +219,7 @@ ssh scc135-cpu22 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -204,6 +228,7 @@ ssh scc135-cpu23 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -212,6 +237,7 @@ ssh scc135-cpu24 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -220,6 +246,7 @@ ssh scc135-cpu25 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -228,6 +255,7 @@ ssh scc135-cpu26 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -236,6 +264,7 @@ ssh scc135-cpu27 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -244,6 +273,7 @@ ssh scc135-cpu28 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 
@@ -252,6 +282,7 @@ ssh scc135-cpu29 << EOF
   sudo dnf update -y
   cd /nfs/general/resources/setup
   ./aocc_setup.sh
+  ./spack_setup.sh
   exit
 EOF
 

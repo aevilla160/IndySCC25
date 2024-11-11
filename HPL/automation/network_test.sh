@@ -6,14 +6,12 @@ set -e
 
 ## Server node ##
 ssh $1 << EOF
-  sudo dnf install iperf3;
+  sudo dnf install iperf3 -y;
   iperf3 -s -1;
-  exit;
 EOF
 
 ## Server node ##
 ssh $2 << EOF
-  sudo dnf install iperf3;
+  sudo dnf install iperf3 -y;
   iperf3 -c -Z $1 --logfile /nfs/general/logs/iperf.txt;
-  exit;
 EOF
