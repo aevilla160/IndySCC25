@@ -6,13 +6,13 @@ sudo dnf install nfs-utils -y
 
 cd /
 
-sudo mkdir /nfs/general/resources/setup -p
-sudo mkdir /nfs/general/logs/iperf -p
-sudo mkdir /nfs/general/tests
-sudo mkdir /nfs/general/slurm/munge -p
-sudo mkdir /nfs/general/mpi
-sudo mkdir /nfs/general/hpl/amd -p
-sudo mkdir /nfs/general/icon
+# sudo mkdir /nfs/general/resources/setup -p
+# sudo mkdir /nfs/general/logs/iperf -p
+# sudo mkdir /nfs/general/tests
+# sudo mkdir /nfs/general/slurm/munge -p
+# sudo mkdir /nfs/general/mpi
+# sudo mkdir /nfs/general/hpl/amd -p
+# sudo mkdir /nfs/general/icon
 
 sudo chown -R rocky:rocky /nfs/general
 
@@ -82,8 +82,8 @@ END
 sudo systemctl restart nfs-server
 sudo systemctl status nfs-server
 
-firewall-cmd --permanent --add-service=nfs
-firewall-cmd --permanent --add-service=mountd
-firewall-cmd --permanent --add-service=rpc-bind
-firewall-cmd --reload
+# firewall-cmd --permanent --add-service=nfs
+# firewall-cmd --permanent --add-service=mountd
+# firewall-cmd --permanent --add-service=rpc-bind
+# firewall-cmd --reload
 
