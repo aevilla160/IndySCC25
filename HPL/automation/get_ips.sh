@@ -1,5 +1,3 @@
-
-
 #!/bin/bash
 
 BASE_HOSTNAME="scc135-cpu"
