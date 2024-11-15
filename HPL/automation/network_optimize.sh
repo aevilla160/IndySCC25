@@ -2,11 +2,14 @@
 set -e
 
 sudo sysctl -w net.ipv4.tcp_congestion_control=cubic
-sudo sysctl -w net.core.rmem_max=1048576
-sudo sysctl -w net.core.wmem_max=1048576
-sudo sysctl -w net.ipv4.tcp_rmem='16777216 16777216 16777216'
-sudo sysctl -w net.ipv4.tcp_wmem='16777216 16777216 16777216'
-sudo sysctl -w net.core.netdev_max_backlog=25000
+sudo sysctl -w net.core.rmem_max=16777216
+sudo sysctl -w net.core.wmem_max=16777216
+sudo sysctl -w net.core.rmem_default=16777216
+sudo sysctl -w net.core.wmem_default=16777216
+sudo sysctl -w net.ipv4.tcp_rmem='4096 87380 16777216'
+sudo sysctl -w net.ipv4.tcp_wmem='4096 65536 16777216'
+sudo sysctl -w net.core.netdev_max_backlog=30000
+sudo sysctl -w net.ipv4.tcp_mem='16777216 16777216 16777216'
 sudo sysctl -w net.ipv4.tcp_low_latency=1
 sudo sysctl -w net.ipv4.tcp_fin_timeout=10
 sudo sysctl -w net.ipv4.tcp_max_tw_buckets=450000
