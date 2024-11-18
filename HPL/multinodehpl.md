@@ -18,7 +18,24 @@ HPL Location
 /nfs/general/hpl/bin
 ```
 
+Check permissions:
+
+```sh
+ls -al
+```
+
+Executable permissions:
+
+```sh
+chmod +x script.sh
+```
+
+For logging:
+
+```sh
+sudo chmod 777 file.out
+```
+
 ## Pinnacles (via SLURM)
 
 > If running on interactive nodes, need password file.
-

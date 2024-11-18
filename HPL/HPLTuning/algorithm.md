@@ -12,3 +12,4 @@ HPL solves a linear system of order n: Ax = b
 ## Resources
 
 **[Netlib: HPL Algorithm original page](https://netlib.org/benchmark/hpl/algorithm.html)**
+    

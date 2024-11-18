@@ -5,5 +5,3 @@
 Version: AMD_ZEN_HPL_2023-05
 
 ## Resources
-
-dfs
