@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+## Needs 1 input to run ##
+
 sudo dnf update -y
 sudo dnf install nfs-utils -y
 
