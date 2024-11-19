@@ -8,6 +8,7 @@ IFS=$'\n\t'
 readonly BASE_HOSTNAME="scc135-cpu"
 readonly USER="rocky"
 readonly NFS_BASE="/nfs/general"
+readonly NFS_IP="10.3.143.84"
 readonly SETUP_DIR="${NFS_BASE}/resources/setup/scripts"
 readonly SCRIPTS_DIR="${SETUP_DIR}/scripts"
 readonly LOG_DIR="${NFS_BASE}/logs"
@@ -177,9 +178,10 @@ setup_single_compute_node() {
         set -e
         echo \"Setting up \$(hostname)\"
         sudo dnf update -y
+        ./cpu_nfs_setup \"${NFS_IP}\"
         cd \"${SCRIPTS_DIR}\"
         ./aocc_setup.sh
-        ./spack_setup.sh
+        ./spack_setup.sh 
     '" "Setup ${hostname}"; then
         error "Failed to setup ${hostname}"
         return 1
