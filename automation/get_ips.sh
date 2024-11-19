@@ -14,5 +14,5 @@ USER="rocky"
 
 for i in $(seq 0 $((NUM_HOSTS))); do
     HOSTNAME="${USER}@${BASE_HOSTNAME}${i}"
-    echo "${HOSTNAME}: $(ssh -o StrictHostKeyChecking=no "${HOSTNAME}" "hostname -I")"
+    echo "${HOSTNAME}: $(ssh "${HOSTNAME}" "hostname -I")"
 done

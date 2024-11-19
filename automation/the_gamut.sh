@@ -151,13 +151,13 @@ setup_single_compute_node() {
     log "Setting up node: ${hostname}"
     
     # Test SSH connection
-    if ! retry_command "ssh -o ConnectTimeout=10 -o StrictHostKeyChecking=no ${hostname} 'echo SSH connection successful'" "SSH Test ${hostname}"; then
+    if ! retry_command "ssh -o ConnectTimeout=10 ${hostname} 'echo SSH connection successful'" "SSH Test ${hostname}"; then
         error "Cannot connect to ${hostname}"
         return 1
     fi
     
     # Perform node setup
-    if ! retry_command "ssh -o StrictHostKeyChecking=no ${hostname} '
+    if ! retry_command "ssh ${hostname} '
         set -e
         echo \"Setting up \$(hostname)\"
         sudo dnf update -y
