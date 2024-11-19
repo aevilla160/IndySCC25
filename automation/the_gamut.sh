@@ -8,8 +8,8 @@ echo "RUNNING THE GAMUT"
 cd /nfs/general/resources/setup/scripts
 
 ## Login Node setup ##
-./get_ips.sh 11 >> ips.txt
-# ./login_nfs_setup.sh
+./get_ips.sh 10 >> ips.txt
+./login_nfs_setup.sh
 ./aocc_setup.sh
 ./spack_setup.sh
 # ./slurm_login_setup.sh
