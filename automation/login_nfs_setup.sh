@@ -6,13 +6,13 @@ sudo dnf install nfs-utils -y
 
 cd /
 
-sudo mkdir /nfs/general/resources/setup/scripts -p
-sudo mkdir /nfs/general/logs/iperf -p
-sudo mkdir /nfs/general/tests
-sudo mkdir /nfs/general/slurm/munge -p
-sudo mkdir /nfs/general/mpi
-sudo mkdir /nfs/general/hpl/amd -p
-sudo mkdir /nfs/general/icon
+# sudo mkdir /nfs/general/resources/setup/scripts -p
+# sudo mkdir /nfs/general/logs/iperf -p
+# sudo mkdir /nfs/general/tests
+# sudo mkdir /nfs/general/slurm/munge -p
+# sudo mkdir /nfs/general/mpi
+# sudo mkdir /nfs/general/hpl/amd -p
+# sudo mkdir /nfs/general/icon
 
 # sudo tee -a /etc/exports << END
 # /nfs/general        10.3.143.121(rw,sync,no_subtree_check)
