@@ -9,4 +9,4 @@ git clone -c feature.manyFiles=true https://github.com/spack/spack.git ${SPACK_R
 source ${SPACK_ROOT}/share/spack/setup-env.sh
 spack --help
 
-spack compilers find
+spack compiler find
