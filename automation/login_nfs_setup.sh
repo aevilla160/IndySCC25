@@ -51,9 +51,9 @@ sudo mkdir /nfs/general/icon
 # END
 
 cd ~/IndySCC24/automation
-cp *.sh /nfs/general/resources/setup/scripts
+sudo cp * /nfs/general/resources/setup/scripts
 cd /nfs/general/resources/setup/scripts
-chmod +x *
+sudo chmod +x *
 
 cd / 
 
