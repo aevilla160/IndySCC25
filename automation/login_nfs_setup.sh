@@ -50,11 +50,6 @@ cd /
 # /scratch            10.3.143.8(rw,sync,no_root_squash,no_subtree_check)
 # END
 
-cd ~/IndySCC24/automation
-sudo cp * /nfs/general/resources/setup/scripts
-cd /nfs/general/resources/setup/scripts
-sudo chmod +x *
-
 cd / 
 
 sudo chown -R rocky:rocky /nfs/general

@@ -16,8 +16,8 @@ USER="rocky"
 
 echo "RUNNING THE GAMUT"
 
-cd ~/IndySCC24/automation
-sudo cp * /nfs/general/resources/setup/scripts
+cd /home/rocky/IndySCC24/automation
+sudo cp -r * /nfs/general/resources/setup/scripts
 cd /nfs/general/resources/setup/scripts
 sudo chmod +x *
 
