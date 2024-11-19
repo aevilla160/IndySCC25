@@ -8,12 +8,6 @@ set -e
 ssh $1 << EOF
   netstat -rn > /nfs/general/logs/$1_network.txt
   sudo dnf install iperf3 -y;
-  iperf3 -s -1;
-EOF
-
-## Server node ##
-ssh $2 << EOF
-  netstat -rn > /nfs/general/logs/$2_network.txt
-  sudo dnf install iperf3 -y;
-  iperf3 -c -Z $1 --logfile /nfs/general/logs/$2_network.txt;
+  iperf3 -C bbr --fq-rate 6G -c $2 --logfile /nfs/general/logs/$2_network.txt
+  iperf3 -C bbr --fq-rate 6G --bidir -c $2 --logfile /nfs/general/logs/$1_$2_network.txt
 EOF
