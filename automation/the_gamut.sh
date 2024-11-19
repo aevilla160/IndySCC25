@@ -2,12 +2,6 @@
 set -e
 
 # Who needs Ansible when you have CTRL-C and CTRL-V? #
-
-echo "RUNNING THE GAMUT"
-
-cd /nfs/general/resources/setup/scripts
-
-
 if [ $# -ne 1 ]; then
     echo "Error: Please provide the number of hosts to set up"
     echo "Usage: $0 <number_of_hosts>"
@@ -20,6 +14,10 @@ NUM_HOSTS=$1
 BASE_HOSTNAME="scc135-cpu"
 USER="rocky"
 
+echo "RUNNING THE GAMUT"
+
+cd /nfs/general/resources/setup/scripts
+
 ## Login Node setup ##
 ./get_ips.sh NUM_HOSTS >> /nfs/general/logs/ips.txt
 ./login_nfs_setup.sh
@@ -28,7 +26,7 @@ USER="rocky"
 # ./slurm_login_setup.sh
 # ./mpi_setup.sh
 
-for i in $(seq 0 $((NUM_HOSTS))); do
+for i in $(seq 0 $((NUM_HOSTS-1))); do
   HOSTNAME="${USER}@${BASE_HOSTNAME}${i}"
   ssh -o StrictHostKeyChecking=no "${HOSTNAME}" << EOF
   hostname
