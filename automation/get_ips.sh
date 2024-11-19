@@ -6,13 +6,16 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-# Store the argument
 NUM_HOSTS=$1
 
 BASE_HOSTNAME="scc135-cpu"
 USER="rocky"
 
 for i in $(seq 0 $((NUM_HOSTS))); do
+    ssh-keyscan "${BASE_HOSTNAME}${i}" >> ~/.ssh/known_hosts 2>/dev/null
+done
+
+for i in $(seq 0 $((NUM_HOSTS-1))); do
     HOSTNAME="${USER}@${BASE_HOSTNAME}${i}"
     echo "${HOSTNAME}: $(ssh "${HOSTNAME}" "hostname -I")"
 done

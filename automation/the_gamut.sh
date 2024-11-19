@@ -8,8 +8,7 @@ IFS=$'\n\t'
 readonly BASE_HOSTNAME="scc135-cpu"
 readonly USER="rocky"
 readonly NFS_BASE="/nfs/general"
-readonly NFS_IP="10.3.143.84"
-readonly SETUP_DIR="${NFS_BASE}/resources/setup"
+readonly SETUP_DIR="${NFS_BASE}/resources/setup/scripts"
 readonly SCRIPTS_DIR="${SETUP_DIR}/scripts"
 readonly LOG_DIR="${NFS_BASE}/logs"
 readonly LOG_FILE="${LOG_DIR}/setup_$(date +%Y%m%d_%H%M%S).log"
@@ -28,19 +27,20 @@ error() {
     log "ERROR: $*" >&2
 }
 
-# Function to retry commands
 retry_command() {
     local -r cmd="${1}"
     local -r description="${2}"
     local retries=0
     
     while [ $retries -lt $MAX_RETRIES ]; do
-        if eval "$cmd"; then
+        log "Executing: ${cmd}"
+        if eval "$cmd" 2>&1 | tee -a "${LOG_FILE}"; then
             log "${description} - Succeeded"
             return 0
         else
+            local exit_code=$?
             retries=$((retries + 1))
-            error "${description} - Failed (Attempt ${retries}/${MAX_RETRIES})"
+            error "${description} - Failed with exit code ${exit_code} (Attempt ${retries}/${MAX_RETRIES})"
             if [ $retries -lt $MAX_RETRIES ]; then
                 log "Waiting ${RETRY_DELAY} seconds before retrying..."
                 sleep "${RETRY_DELAY}"
@@ -96,6 +96,9 @@ copy_setup_files() {
         return 1
     fi
     
+    log "Current directory: $(pwd)"
+    log "Files to be copied: $(ls -la)"
+    
     if ! sudo cp -r ./* "${SCRIPTS_DIR}"; then
         error "Failed to copy setup files"
         return 1
@@ -105,6 +108,8 @@ copy_setup_files() {
         error "Failed to change to scripts directory"
         return 1
     fi
+    
+    log "Destination directory contents: $(ls -la)"
     
     if ! sudo chmod +x ./*; then
         error "Failed to make scripts executable"
@@ -117,11 +122,22 @@ setup_login_node() {
     log "Setting up login node..."
     local failed=0
     
-    # Get IPs
-    if ! retry_command "./get_ips.sh ${NUM_HOSTS} >> ${LOG_DIR}/ips.txt" "Get IPs"; then
-        error "Failed to get IPs"
-        failed=1
+    log "Running get_ips.sh..."
+    log "Current directory: $(pwd)"
+    log "Script permissions: $(ls -l get_ips.sh)"
+    
+    # Try running get_ips directly first
+    if ! ./get_ips.sh "${NUM_HOSTS}" >> "${LOG_DIR}/ips.txt" 2>&1; then
+        error "Direct execution of get_ips.sh failed, trying with bash..."
+        if ! bash ./get_ips.sh "${NUM_HOSTS}" > "${LOG_DIR}/ips.txt" 2>&1; then
+            error "Failed to get IPs even with bash"
+            failed=1
+        fi
     fi
+    
+    # Show the contents of ips.txt regardless of success/failure
+    log "Contents of ips.txt (if it exists):"
+    cat "${LOG_DIR}/ips.txt" 2>&1 | tee -a "${LOG_FILE}" || true
     
     # NFS Setup
     if ! retry_command "./login_nfs_setup.sh" "NFS Setup"; then
@@ -151,18 +167,17 @@ setup_single_compute_node() {
     log "Setting up node: ${hostname}"
     
     # Test SSH connection
-    if ! retry_command "ssh -o ConnectTimeout=10 ${hostname} 'echo SSH connection successful'" "SSH Test ${hostname}"; then
+    if ! retry_command "ssh -o ConnectTimeout=10 -o StrictHostKeyChecking=no ${hostname} 'echo SSH connection successful'" "SSH Test ${hostname}"; then
         error "Cannot connect to ${hostname}"
         return 1
     fi
     
     # Perform node setup
-    if ! retry_command "ssh ${hostname} '
+    if ! retry_command "ssh -o StrictHostKeyChecking=no ${hostname} '
         set -e
         echo \"Setting up \$(hostname)\"
         sudo dnf update -y
-        cd \"${SETUP_DIR}\"
-        ./cpu_nfs_setup \"${NFS_IP}\"
+        cd \"${SCRIPTS_DIR}\"
         ./aocc_setup.sh
         ./spack_setup.sh
     '" "Setup ${hostname}"; then
