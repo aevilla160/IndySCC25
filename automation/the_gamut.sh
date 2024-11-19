@@ -16,7 +16,10 @@ USER="rocky"
 
 echo "RUNNING THE GAMUT"
 
+cd ~/IndySCC24/automation
+sudo cp * /nfs/general/resources/setup/scripts
 cd /nfs/general/resources/setup/scripts
+sudo chmod +x *
 
 ## Login Node setup ##
 ./get_ips.sh NUM_HOSTS >> /nfs/general/logs/ips.txt
