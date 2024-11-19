@@ -13,10 +13,6 @@ BASE_HOSTNAME="scc135-cpu"
 USER="rocky"
 
 for i in $(seq 0 $((NUM_HOSTS-1))); do
-    if [ $i -lt 10 ]; then
-        HOSTNAME="${USER}0@${BASE_HOSTNAME}${i}"
-    else
-        HOSTNAME="${USER}@${BASE_HOSTNAME}${i}"
-    fi
+    HOSTNAME="${USER}@${BASE_HOSTNAME}${i}"
     echo "${HOSTNAME}: $(ssh -o StrictHostKeyChecking=no "${HOSTNAME}" "hostname -I")"
 done
