@@ -7,15 +7,15 @@ mkdir /home/rocky/optimized_icon
 
 set -ex
 
-cd ~
-wget https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.2.tar.gz
-tar xf openmpi-4.1.2.tar.gz
-cd ~
-mkdir -p .tools/
-cd openmpi-4.1.2
-./configure --prefix=/nfs/general/mpi4_1_2 2>&1 | tee config.out
-make -j3 all 2>&1 | tee make.out 
-sudo make install 2>&1 | tee install.out
+# cd ~
+# wget https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.2.tar.gz
+# tar xf openmpi-4.1.2.tar.gz
+# cd ~
+# mkdir -p .tools/
+# cd openmpi-4.1.2
+# ./configure --prefix=/nfs/general/mpi4_1_2 2>&1 | tee config.out
+# make -j3 all 2>&1 | tee make.out 
+# sudo make install 2>&1 | tee install.out
 
 cd /home/rocky/optimized_icon
 sudo dnf install libxml2 libxml2-devel
@@ -112,4 +112,6 @@ scc135-cpu9 slots=32
 EOF
 
 cp  /nfs/general/data-SC_R2B4/exp.tropical_cyclones_R2B4_SC  /home/rocky/optimized_icon/icon-model/run/
-cp /nfs/general/exp.tropical_cyclones_R2B4_SC.run .
+cp /nfs/general/exp.tropical_cyclones_R2B4_SC.run /home/rocky/optimized_icon/icon-model/run/
+chmod +x  /home/rocky/optimized_icon/icon-model/run/exp.tropical_cyclones_R2B4_SC.run
+
